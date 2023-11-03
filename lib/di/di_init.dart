@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:core/core.dart';
 import 'package:dashboard/dashboard.dart';
 import 'package:settings/settings.dart';
@@ -7,17 +9,23 @@ class InitDependencyInjection {
     //Other
     Injector.registerSingleton((c) => Logger());
     Injector.registerSingleton<BuildConfig>((c) => config);
+    Injector.registerFactory<Random>((c) => Random());
 
     // Data Source
     Injector.registerSingleton<RandomNumberDataSource>(
       (c) => RandomNumberDataSourceImpl(
+        c<Random>(),
         c<Logger>(),
       ),
     );
     Injector.registerSingleton<RandomNumberStreamDataSource>(
       (c) => RandomNumberStreamDataSourceImpl(
+        c<Random>(),
         c<Logger>(),
       ),
+    );
+    Injector.registerSingleton<RandomNumberMemoryDataSource>(
+      (c) => RandomNumberMemoryDataSourceImpl(),
     );
 
     // Repository
@@ -25,6 +33,7 @@ class InitDependencyInjection {
       (c) => RandomNumberRepositoryImpl(
         c<RandomNumberDataSource>(),
         c<RandomNumberStreamDataSource>(),
+        c<RandomNumberMemoryDataSource>(),
       ),
     );
 
@@ -39,18 +48,31 @@ class InitDependencyInjection {
         c<RandomNumberRepository>(),
       ),
     );
+    Injector.registerSingleton(
+      (c) => GetStoredRandomNumberUseCase(
+        c<RandomNumberRepository>(),
+      ),
+    );
+    Injector.registerSingleton(
+      (c) => StopNumberGenerationUseCase(
+        c<RandomNumberRepository>(),
+      ),
+    );
 
     // Bloc
     Injector.registerFactory((c) => MainBloc(c<Logger>()));
     Injector.registerFactory(
       (c) => NumberBloc(
+        c<GetStoredRandomNumberUseCase>(),
         c<GetRandomNumberUseCase>(),
         c<Logger>(),
       ),
     );
     Injector.registerFactory(
       (c) => StreamBloc(
+        c<GetStoredRandomNumberUseCase>(),
         c<GetRandomNumberStreamUseCase>(),
+        c<StopNumberGenerationUseCase>(),
         c<Logger>(),
       ),
     );
@@ -59,5 +81,7 @@ class InitDependencyInjection {
         c<Logger>(),
       ),
     );
+    Injector.registerFactory((c) => ThemeBloc(c<Logger>()));
+    Injector.registerFactory((c) => LanguageBloc(c<Logger>()));
   }
 }

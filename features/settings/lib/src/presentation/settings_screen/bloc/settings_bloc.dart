@@ -7,14 +7,14 @@ class SettingsBloc extends BaseBloc<SettingsEvent, SettingsState> {
   final Logger _logger;
 
   SettingsBloc(this._logger) : super(SettingsState.create()) {
-    on<InitEvent>(_init);
+    on<InitSettingsBlocEvent>(_init);
   }
 
   @override
   void init({required BlocParameter parameter}) {
     _logger.d("Init");
     var param = parameter as SettingsBlocParameter;
-    add(InitEvent(previousPage: param.previousPage));
+    add(InitSettingsBlocEvent(previousScreen: param.previousPage));
   }
 
   @override
@@ -23,10 +23,10 @@ class SettingsBloc extends BaseBloc<SettingsEvent, SettingsState> {
   }
 
   void _init(
-    InitEvent event,
+    InitSettingsBlocEvent event,
     Emitter<SettingsState> emit,
   ) {
-    _logger.d("Previous page: ${event.previousPage}");
-    emit(state.copyWith(previousPage: event.previousPage));
+    _logger.d("Previous page: ${event.previousScreen}");
+    emit(state.copyWith(previousScreen: event.previousScreen));
   }
 }

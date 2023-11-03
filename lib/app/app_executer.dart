@@ -13,15 +13,7 @@ class AppExecuter {
     InitDependencyInjection.init(buildConfig);
 
     WidgetsFlutterBinding.ensureInitialized();
-    await EasyLocalization.ensureInitialized();
 
-    runApp(EasyLocalization(
-      supportedLocales: const [
-        Locale('en'),
-      ],
-      path: 'packages/core/assets/translations',
-      fallbackLocale: const Locale('en'),
-      child: const MyApp(),
-    ));
+    runApp(const MyApp());
   }
 }

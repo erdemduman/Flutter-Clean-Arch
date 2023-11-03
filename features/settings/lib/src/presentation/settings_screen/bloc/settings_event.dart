@@ -4,8 +4,11 @@ abstract class SettingsEvent extends BaseEvent {
   const SettingsEvent();
 }
 
-class InitEvent extends SettingsEvent {
-  final String previousPage;
+class InitSettingsBlocEvent extends SettingsEvent {
+  final String previousScreen;
 
-  const InitEvent({required this.previousPage});
+  const InitSettingsBlocEvent({required this.previousScreen});
+
+  @override
+  List<Object?> get props => [previousScreen];
 }

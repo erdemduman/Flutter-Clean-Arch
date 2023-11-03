@@ -1,0 +1,14 @@
+{
+    "random_number": "Zufallszahl",
+    "random_number_stream": "Zufallszahlen-Stream",
+    "max_limit": "Maximale Anzahl",
+    "fetch_number": "Klicken Sie, um eine Zufallszahl zu erhalten!",
+    "fetch_number_stream": "Klicke, um jede Sekunde eine Zufallszahl zu erhalten!",
+    "stop_stream": "Stop the number stream!",
+    "previous_screen": "Vorherige Seite",
+    "en": "Englisch",
+    "de": "Deutsch",
+    "tr": "Tuerkisch",
+    "light_theme": "Helles Thema",
+    "dark_theme": "Dunkles Thema"
+}

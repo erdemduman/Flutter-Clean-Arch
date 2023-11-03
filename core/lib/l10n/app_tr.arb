@@ -1,0 +1,14 @@
+{
+    "random_number": "Rastgele Sayi",
+    "random_number_stream": "Rastgele Sayi Akisi",
+    "max_limit": "Ust Sinir",
+    "fetch_number": "Rastgele bir sayi almak icin tikla!",
+    "fetch_number_stream": "Her saniye rastgele bir sayi almak icin tikla!",
+    "stop_stream": "Sayi akisini durdur!",
+    "previous_screen": "Onceki sayfa",
+    "en": "Ingilizce",
+    "de": "Almanca",
+    "tr": "Turkce",
+    "light_theme": "Beyaz tema",
+    "dark_theme": "Siyah tema"
+}

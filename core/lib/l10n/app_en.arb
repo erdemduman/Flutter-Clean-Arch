@@ -1,0 +1,14 @@
+{
+    "random_number": "Random Number",
+    "random_number_stream": "Random Number Stream",
+    "max_limit": "Max Limit",
+    "fetch_number": "Click to fetch a random number!",
+    "fetch_number_stream": "Click to fetch a random number every second!",
+    "stop_stream": "Stop the number stream!",
+    "previous_screen": "Previous screen",
+    "en": "English",
+    "de": "German",
+    "tr": "Turkish",
+    "light_theme": "Light theme",
+    "dark_theme": "Dark theme"
+}

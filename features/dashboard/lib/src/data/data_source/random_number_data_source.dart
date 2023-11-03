@@ -9,10 +9,10 @@ abstract class RandomNumberDataSource {
 }
 
 class RandomNumberDataSourceImpl implements RandomNumberDataSource {
-  final Random _rng = Random();
+  final Random _rng;
   final Logger _logger;
 
-  RandomNumberDataSourceImpl(this._logger);
+  RandomNumberDataSourceImpl(this._rng, this._logger);
 
   @override
   Future<RandomNumberModel> getRandomNumber(int maxLimit) async {

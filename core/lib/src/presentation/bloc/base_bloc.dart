@@ -1,6 +1,6 @@
-import 'package:core/src/presentation/bloc/base_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'base_event.dart';
 import 'base_state.dart';
 import 'bloc_parameter.dart';
 

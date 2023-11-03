@@ -1,5 +1,6 @@
 name: core
 description: A new Flutter package project.
+publish_to: none
 version: 0.0.1
 homepage:
 
@@ -10,13 +11,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
   logger: ^2.0.2+1
   equatable: ^2.0.5
   flutter_bloc: ^8.1.3
+  bloc_concurrency: ^0.2.2
   collection: ^1.17.2
   kiwi: ^4.1.0
-  easy_localization: ^3.0.3
-  easy_localization_loader: ^2.0.0
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -30,8 +34,8 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-  assets:
-    - assets/translations/
+  #assets:
+  generate: true
   #   - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see

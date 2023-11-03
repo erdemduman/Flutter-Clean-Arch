@@ -1,26 +1,29 @@
 import 'package:core/core.dart';
 
 class SettingsState extends BaseState {
-  final String previousPage;
+  final String previousScreen;
   final SettingsStatus status;
 
-  const SettingsState._({required this.previousPage, required this.status});
+  const SettingsState._({
+    required this.previousScreen,
+    required this.status,
+  });
 
   SettingsState copyWith({
-    String? previousPage,
+    String? previousScreen,
     SettingsStatus? status,
   }) {
     return SettingsState._(
-      previousPage: previousPage ?? this.previousPage,
+      previousScreen: previousScreen ?? this.previousScreen,
       status: status ?? this.status,
     );
   }
 
   @override
-  List<Object?> get props => [previousPage, status];
+  List<Object?> get props => [previousScreen, status];
 
   factory SettingsState.create() => const SettingsState._(
-        previousPage: "NONE",
+        previousScreen: "NONE",
         status: SettingsStatus.initial,
       );
 }

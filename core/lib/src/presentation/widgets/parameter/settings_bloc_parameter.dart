@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import '../../bloc/bloc_parameter.dart';
 
 class SettingsBlocParameter extends BlocParameter {
   final String previousPage;

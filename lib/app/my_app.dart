@@ -7,14 +7,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Modular Clean Architecture',
-      initialRoute: Routes.main,
-      onGenerateRoute: AppRouter.generateRoute,
-      theme: ThemeData(primarySwatch: Colors.blue),
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
+    return SharedBlocProvider(
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, themeState) =>
+            BlocBuilder<LanguageBloc, LanguageState>(
+          builder: (context, languageState) => MaterialApp(
+            title: 'Modular Clean Architecture',
+            initialRoute: Routes.main,
+            onGenerateRoute: AppRouter.generateRoute,
+            theme:
+                themeState.isDarkTheme ? ThemeData.dark() : ThemeData.light(),
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en'),
+              Locale('de'),
+              Locale('tr'),
+            ],
+            locale: Locale.fromSubtags(
+              languageCode: languageState.language,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

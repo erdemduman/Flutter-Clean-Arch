@@ -17,8 +17,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-        blocMap: {Injector.resolve<SettingsBloc>(): widget.parameter},
-        child: const SettingsScreenBody());
+      bloc: Injector.resolve<SettingsBloc>(),
+      parameter: widget.parameter,
+      child: const SettingsScreenBody(),
+    );
   }
 }
 
@@ -30,6 +32,16 @@ class SettingsScreenBody extends StatefulWidget {
 }
 
 class _SettingsScreenBodyState extends State<SettingsScreenBody> {
+  ThemeBloc? _themeBloc;
+  LanguageBloc? _languageBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _themeBloc = SharedBlocProvider.of<ThemeBloc>(context);
+    _languageBloc = SharedBlocProvider.of<LanguageBloc>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,8 +55,62 @@ class _SettingsScreenBodyState extends State<SettingsScreenBody> {
         ),
       ),
       body: BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
-        return Center(child: Text("Previous page: ${state.previousPage}"));
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text("${context.strId.previous_screen}: ${state.previousScreen}"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(context.strId.light_theme),
+                  BlocBuilder<ThemeBloc, ThemeState>(
+                    builder: (context, themeState) => Switch(
+                      value: themeState.isDarkTheme,
+                      onChanged: (_) {
+                        _themeBloc?.add(ToggleThemeEvent());
+                      },
+                    ),
+                  ),
+                  Text(context.strId.dark_theme),
+                ],
+              ),
+              BlocBuilder<LanguageBloc, LanguageState>(
+                  builder: (context, languageState) {
+                return DropdownButton<String>(
+                  value: languageState.language,
+                  items: [AppConstants.en, AppConstants.de, AppConstants.tr]
+                      .map(
+                        (item) => DropdownMenuItem(
+                          value: item,
+                          child: Text(_getLanguageName(context, item)),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (lang) {
+                    _languageBloc?.add(
+                      ChangeLanguageEvent(language: lang ?? ""),
+                    );
+                  },
+                );
+              }),
+            ],
+          ),
+        );
       }),
     );
+  }
+
+  String _getLanguageName(BuildContext context, String lang) {
+    switch (lang) {
+      case AppConstants.en:
+        return context.strId.en;
+      case AppConstants.de:
+        return context.strId.de;
+      case AppConstants.tr:
+        return context.strId.tr;
+      default:
+        return context.strId.en;
+    }
   }
 }
