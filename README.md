@@ -1,16 +1,31 @@
-# flutter_arch
+# Flutter-Clean-Arch
 
-A new Flutter project.
+This is an example base project for Flutter developers who would like to use multiple packages/modules with clean architecture in their project.
 
-## Getting Started
+#### The app has the following features:
 
-This project is a starting point for a Flutter application.
+* Dashboard
+  * Main Screen
+    * Navigating to Number Screen
+    * Navigating to Stream Screen
+    * Navigation to Settings Screen
+  * Number Screen
+    * Fetching a random number between 0 and maximum limit of the user's choice
+    * Navigation to Settings Screen
+  * Stream Screen
+    * Fetching a random number between 0 and maximum limit of the user's choise every second
+    * Navigation to Settings Screen
+* Settings
+  * Settings Screen
+    * Changing the theme
+    * Changing the language
 
-A few resources to get you started if this is your first Flutter project:
+#### Used libraries:
+  * logger: https://pub.dev/packages/logger
+  * equatable: https://pub.dev/packages/equatable
+  * flutter_bloc: https://pub.dev/packages/flutter_bloc
+  * bloc_concurrency: https://pub.dev/packages/bloc_concurrency
+  * collection: https://api.dart.dev/stable/3.1.5/dart-collection/dart-collection-library.html
+  * kiwi: https://pub.dev/packages/kiwi
+  * intl: https://pub.dev/packages/intl
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
